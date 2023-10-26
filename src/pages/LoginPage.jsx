@@ -1,6 +1,6 @@
-import { Box } from '@mui/system';
-import React from 'react';
-import login from '../assets/images/login.png';
+import { Box, CircularProgress } from '@mui/material';
+import React, { useState } from 'react';
+import loginImage from '../assets/images/login.png';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,18 +13,46 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { login } from '../service/apiSlice';
+import { setToken } from '../logic/authSlice';
+import { toast, ToastContainer } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Apply toast styles
+import { useHistory } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 const LoginPage = () => {
-        const handleSubmit = (event) => {
+        const dispatch = useDispatch();
+        const [loading, setLoading] = useState(false);
+
+        const handleSubmit = async (event) => {
                 event.preventDefault();
+                setLoading(true);
                 const data = new FormData(event.currentTarget);
-                console.log({
+                const credentials = {
                         email: data.get('email'),
                         password: data.get('password'),
-                });
+                        role_id: 3,
+                };
+
+                try {
+                        const resultAction = await dispatch(login(credentials));
+                        if (login.fulfilled.match(resultAction)) {
+                                const token = resultAction.payload.token;
+                                dispatch(setToken(token));
+                                // Handle a successful login, e.g., redirect to another page.
+                                window.location.href = '/';
+                        } else if (login.rejected.match(resultAction)) {
+                                toast.error('Email and Password not matched.');
+                        }
+                } catch (error) {
+                        toast.error('An error occurred during login.');
+                } finally {
+                        setLoading(false);
+                }
         };
+
         return (
                 <Box
                         sx={{
@@ -32,8 +60,7 @@ const LoginPage = () => {
                                         xs: 'block',
                                         sm: 'block',
                                         md: 'flex',
-                                        lg: 'flex'
-
+                                        lg: 'flex',
                                 },
                                 height: '100vh',
                         }}
@@ -44,17 +71,17 @@ const LoginPage = () => {
                                         backgroundColor: '#9C27B0',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        justifyContent: 'center'
+                                        justifyContent: 'center',
                                 }}
                         >
-                                <img src={login} width='50%' />
+                                <img src={loginImage} width="50%" alt="Login" />
                         </Box>
                         <Box
                                 sx={{
                                         flex: 1,
                                         display: 'flex',
                                         alignItems: 'center',
-                                        justifyContent: 'center'
+                                        justifyContent: 'center',
                                 }}
                         >
                                 <ThemeProvider theme={defaultTheme}>
@@ -99,33 +126,43 @@ const LoginPage = () => {
                                                                         control={<Checkbox value="remember" color="primary" />}
                                                                         label="Remember me"
                                                                 />
-                                                                <Button
-                                                                        type="submit"
-                                                                        fullWidth
-                                                                        variant="contained"
-
-                                                                        sx={{ mt: 3, mb: 2, backgroundColor: "#9C27B0" }}
-                                                                >
-                                                                        Sign In
-                                                                </Button>
+                                                                {loading ? (
+                                                                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                                                                <CircularProgress />
+                                                                        </Box>
+                                                                ) : (
+                                                                        <Button
+                                                                                type="submit"
+                                                                                fullWidth
+                                                                                variant="contained"
+                                                                                sx={{ mt: 3, mb: 2, backgroundColor: '#9C27B0' }}
+                                                                        >
+                                                                                Sign In
+                                                                        </Button>
+                                                                )}
                                                                 <Grid container justifyContent="center">
                                                                         <Grid item>
-                                                                                <Link href="/signup" variant="body2" color='#9C27B0' sx={{
-                                                                                        textDecoration: 'none',
-                                                                                        justifyContent: 'center',
-                                                                                        alignItems: 'center'
-                                                                                }}>
+                                                                                <Link
+                                                                                        href="/signup"
+                                                                                        variant="body2"
+                                                                                        color="#9C27B0"
+                                                                                        sx={{
+                                                                                                textDecoration: 'none',
+                                                                                                justifyContent: 'center',
+                                                                                                alignItems: 'center',
+                                                                                        }}
+                                                                                >
                                                                                         {"Don't have an account? Sign Up"}
                                                                                 </Link>
                                                                         </Grid>
                                                                 </Grid>
                                                         </Box>
                                                 </Box>
-
                                         </Container>
                                 </ThemeProvider>
                         </Box>
-                </Box >
+                        <ToastContainer />
+                </Box>
         );
 };
 

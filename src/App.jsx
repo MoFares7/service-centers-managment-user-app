@@ -22,7 +22,7 @@ function App() {
                 </Routes>
             </Box>
 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

@@ -121,6 +121,26 @@ const SignUpPage = () => {
                                                                                         autoComplete="new-password"
                                                                                 />
                                                                         </Grid>
+                                                                        <Grid item xs={12}>
+                                                                                <TextField
+                                                                                        required
+                                                                                        fullWidth
+                                                                                        name="confirm_password"
+                                                                                        label="Confirm Password"
+                                                                                        type="confirm_password"
+                                                                                        id="confirm_password"
+                                                                                />
+                                                                        </Grid>
+                                                                        <Grid item xs={12}>
+                                                                                <TextField
+                                                                                        required
+                                                                                        fullWidth
+                                                                                        name="phoneNumber"
+                                                                                        label="Phone Number"
+                                                                                        type="phoneNumber"
+                                                                                        id="phoneNumber"
+                                                                                />
+                                                                        </Grid>
 
                                                                 </Grid>
                                                                 <Button
