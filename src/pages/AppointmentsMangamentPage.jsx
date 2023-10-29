@@ -8,8 +8,17 @@ import addappointmen from '../assets/images/add-appointment.avif';
 import deleteappointment from '../assets/images/deleteAppointmen.avif';
 import appointment from '../assets/images/appointment.jpg';
 import showap from '../assets/images/showap.avif';
+import { Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; // Import useParams
 
 const AppointmentsMangamentPage = () => {
+  const navigate = useNavigate();
+  const { centerId } = useParams();
+
+  const handleShowAppointmentClick = () => {
+    console.log("Button clicked");
+    navigate(`/centerDetails/${centerId}/myAppointment`);
+  };
 
   return (
     <Box sx={{
@@ -75,7 +84,7 @@ const AppointmentsMangamentPage = () => {
             <img src={addappointmen} width='100%' height='58%' />
             <Button sx={{
               width: '200px',
-              height: '60px',
+              height: '50px',
               backgroundColor: '#536DFE',
               color: 'white',
               '&:hover': {
@@ -96,7 +105,7 @@ const AppointmentsMangamentPage = () => {
             <img src={deleteappointment} width='100%' height='58%' />
             <Button sx={{
               width: '200px',
-              height: '60px',
+              height: '50px',
               backgroundColor: '#F44336',
               color: 'white',
               '&:hover': {
@@ -114,16 +123,19 @@ const AppointmentsMangamentPage = () => {
             mr: 2
           }}>
             <img src={showap} width='100%' height='58%' />
-            <Button sx={{
-              width: '200px',
-              height: '60px',
-              backgroundColor: '#9C27B0',
-              color: 'white',
-              '&:hover': {
-                backgroundColor: '#673AB7',
+            <Button
+              sx={{
+                width: '200px',
+                height: '50px',
+                backgroundColor: '#9C27B0',
                 color: 'white',
-              },
-            }}>
+                '&:hover': {
+                  backgroundColor: '#673AB7',
+                  color: 'white',
+                },
+              }}
+              onClick={handleShowAppointmentClick} // Use onClick to register the event handler
+            >
               Show Appointment
             </Button>
           </Box>

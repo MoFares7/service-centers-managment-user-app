@@ -7,8 +7,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import DetailsCenter from './pages/DetailsCenter';
-import AppointmentsMangamentPage from './pages/AppointmentsMangamentPage';
-import ActivitysManagmentPage from './pages/ActivitysManagmentPage';
+import ShowMyAppointment from './pages/ShowMyAppointment';
 
 function App() {
     return (
@@ -18,10 +17,14 @@ function App() {
             <Box style={{ flex: 1 }}>
                 <Routes>
                     <Route path='/' element={<HomePage />} />
-                    <Route path='/centerDetails' element={<DetailsCenter />}>
-                        <Route path='appointments' element={<AppointmentsMangamentPage />} />
-                        <Route path='volunteer' element={<ActivitysManagmentPage />} />
-                    </Route>
+                    <Route
+                        path='/centerDetails/:centerId'
+                        element={<DetailsCenter />}
+                    />
+                    <Route
+                        path='/centerDetails/:centerId/myAppointment'
+                        element={<ShowMyAppointment />}
+                    />
                     <Route path='/login' element={<LoginPage />} />
                     <Route path='/signup' element={<SignUpPage />} />
                 </Routes>
@@ -31,5 +34,6 @@ function App() {
         </div>
     );
 }
+
 
 export default App;
