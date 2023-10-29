@@ -12,7 +12,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import logo from '../assets/software.svg';
 
 const pages = [];
 const settings = [];
@@ -128,7 +127,7 @@ function ResponsiveAppBar() {
                                 <Box sx={{ flexGrow: 0 }}>
                                         <Tooltip title="Open settings">
                                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                                        <Avatar alt="Remy Sharp" src={logo} />
+                                                        {/* <Avatar alt="Remy Sharp" src={logo} /> */}
                                                 </IconButton>
                                         </Tooltip>
                                         <Menu

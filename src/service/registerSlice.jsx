@@ -1,19 +1,17 @@
-// apiSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-//! ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-export const login = createAsyncThunk('api/auth/login', async (credentials) => {
+export const register = createAsyncThunk('api/auth/register-person-user', async (registerInfo) => {
         try {
-                const response = await axios.post('http://127.0.0.1:8000/api/auth/login', credentials);
+                const response = await axios.post('http://127.0.0.1:8000/api/auth/register-person-user', registerInfo);
                 return response.data;
         } catch (error) {
                 throw error;
         }
-});
+}); 
 
-const apiSlice = createSlice({
-        name: 'api',
+const registerSlice = createSlice({
+        name: 'register',
         initialState: {
                 status: 'idle', // idle | loading | succeeded | failed
                 data: null,
@@ -22,18 +20,18 @@ const apiSlice = createSlice({
         reducers: {},
         extraReducers: (builder) => {
                 builder
-                        .addCase(login.pending, (state) => {
+                        .addCase(register.pending, (state) => {
                                 state.status = 'loading';
                         })
-                        .addCase(login.fulfilled, (state, action) => {
+                        .addCase(register.fulfilled, (state, action) => {
                                 state.status = 'succeeded';
                                 state.data = action.payload;
                         })
-                        .addCase(login.rejected, (state, action) => {
+                        .addCase(register.rejected, (state, action) => {
                                 state.status = 'failed';
                                 state.error = action.error.message;
                         });
         },
 });
 
-export default apiSlice.reducer;
+export default registerSlice.reducer;

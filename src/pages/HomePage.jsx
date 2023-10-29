@@ -1,32 +1,44 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import global from '../assets/images/global.jpg';
-import HeaderScope from '../components/Home/HeaderScope';
+import React, { useEffect } from 'react';
+import { Box, CircularProgress, Typography } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCentersAsync } from '../service/centersSliceService';
+import CenterCard from './../components/Home/CenterCard';
+import HeaderScope from './../components/Home/HeaderScope';
+import ErrorData from '../components/ErrorData';
 import FetureCard from './../components/Home/FetureCard';
-import CenterCard from '../components/Home/CenterCard';
-import Footer from '../components/Footer';
+import DrawerCenterDetails from '../components/Drawer';
+import NoData from './../components/NoData';
 
 const HomePage = () => {
-        return (
-                <Box>
-                        <HeaderScope />
+        const dispatch = useDispatch();
+        const centers = useSelector((state) => state.center.data);
+        const status = useSelector((state) => state.center.status);
+
+        useEffect(() => {
+                if (status === 'idle') {
+                        dispatch(fetchCentersAsync());
+                }
+        }, [status, dispatch]);
+
+        // Debugging output
+        console.log('status:', status);
+        console.log('centers:', centers);
+
+        // Conditional rendering
+        if (status === 'loading') {
+                return <CircularProgress />;
+        } else if (status === 'failed') {
+                return <ErrorData />;
+        }
+        else if (Array.isArray(centers)) {
+                return (
                         <Box>
-                                <Typography sx={{
-                                        fontSize: '25px',
-                                        fontWeight: 'bold',
-                                        color: '#9C27B0',
-                                        padding: '20px'
-                                }}>
-                                        Our Feature
+                                <HeaderScope />
+                                <Typography sx={{ fontSize: '25px', fontWeight: 'bold', color: '#9C27B0', padding: '20px' }}>
+                                        Our Service in TOGETHER
                                 </Typography>
                                 <FetureCard />
-                                <Typography sx={{
-                                        fontSize: '25px',
-                                        fontWeight: 'bold',
-                                        color: '#9C27B0',
-                                        padding: '20px'
-                                }}>
+                                <Typography sx={{ fontSize: '25px', fontWeight: 'bold', color: '#9C27B0', padding: '20px' }}>
                                         Our Centers in TOGETHER
                                 </Typography>
                                 <Box
@@ -36,41 +48,28 @@ const HomePage = () => {
                                         sx={{
                                                 p: '10px',
                                                 '& .center-card': {
-                                                        margin: '10px', // Adjust the margin as needed
+                                                        margin: '10px',
                                                 },
                                         }}
                                 >
-                                        <CenterCard
-                                                className="center-card"
-                                                centerName='Sanad'
-                                                centerCity='Liverpool'
-                                                centerImage={global}
-                                        />
-                                        <CenterCard
-                                                className="center-card"
-                                                centerName='Sanad'
-                                                centerCity='Liverpool'
-                                                centerImage={global}
-                                        />
-                                        <CenterCard
-                                                className="center-card"
-                                                centerName='Sanad'
-                                                centerCity='Liverpool'
-                                                centerImage={global}
-                                        />
-                                        <CenterCard
-                                                className="center-card"
-                                                centerName='Sanad'
-                                                centerCity='Liverpool'
-                                                centerImage={global}
-                                        />
+                                        {centers.length === 0 ? (
+                                                <NoData />
+                                        )
+                                                : (centers.map((center) => (
+                                                        <CenterCard
+                                                                key={center.id}
+                                                                className="center-card"
+                                                                centerName={center.name_en}
+                                                                centerCity={center.en_city_name}
+                                                                centerImage={center.logo}
+                                                        />
+                                                )))}
                                 </Box>
-
                         </Box>
-                   
-                </Box >
+                );
+        }
 
-        );
+        return null;
 };
 
 export default HomePage;

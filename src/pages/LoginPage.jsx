@@ -18,7 +18,6 @@ import { login } from '../service/apiSlice';
 import { setToken } from '../logic/authSlice';
 import { toast, ToastContainer } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css'; // Apply toast styles
-import { useHistory } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
