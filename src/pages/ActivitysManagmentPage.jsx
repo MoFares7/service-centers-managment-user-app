@@ -1,10 +1,17 @@
+import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
+import TextFieldSearch from '../components/TextFiledSearch'
+import ActivityCard from '../components/Details/ActivityCard'
 
 const ActivitysManagmentPage = () => {
   return (
-    <div>
-      <h1>22222222222222222222</h1>
-    </div>
+    <Box sx={{
+      pt: 2,
+
+    }}>
+      <TextFieldSearch />
+      <ActivityCard />
+    </Box>
   )
 }
 

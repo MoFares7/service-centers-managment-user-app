@@ -36,7 +36,7 @@ const AppointmentsMangamentPage = () => {
           sx={{
             fontSize: '18px',
             color: '#9C27B0',
-
+            fontWeight: 'bold'
           }}
         >
           Info about Appointment
@@ -79,6 +79,8 @@ const AppointmentsMangamentPage = () => {
           <Box sx={{
             display: 'block',
             width: '200px',
+            ml: 2,
+            mr: 2
 
           }}>
             <img src={addappointmen} width='100%' height='58%' />
@@ -90,6 +92,7 @@ const AppointmentsMangamentPage = () => {
               '&:hover': {
                 backgroundColor: '#1976D2',
                 color: 'white',
+
               },
             }}>
               Add Appointment

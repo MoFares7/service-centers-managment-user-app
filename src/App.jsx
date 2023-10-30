@@ -8,30 +8,36 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import DetailsCenter from './pages/DetailsCenter';
 import ShowMyAppointment from './pages/ShowMyAppointment';
+import theme from './theme';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 
 function App() {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            {/* <ResponsiveAppBar /> */}
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+                {/* <ResponsiveAppBar /> */}
 
-            <Box style={{ flex: 1 }}>
-                <Routes>
-                    <Route path='/' element={<HomePage />} />
-                    <Route
-                        path='/centerDetails/:centerId'
-                        element={<DetailsCenter />}
-                    />
-                    <Route
-                        path='/centerDetails/:centerId/myAppointment'
-                        element={<ShowMyAppointment />}
-                    />
-                    <Route path='/login' element={<LoginPage />} />
-                    <Route path='/signup' element={<SignUpPage />} />
-                </Routes>
-            </Box>
+                <Box style={{ flex: 1 }}>
+                    <Routes>
+                        <Route path='/' element={<HomePage />} />
+                        <Route
+                            path='/centerDetails/:centerId'
+                            element={<DetailsCenter />}
+                        />
+                        <Route
+                            path='/centerDetails/:centerId/myAppointment'
+                            element={<ShowMyAppointment />}
+                        />
+                        <Route path='/login' element={<LoginPage />} />
+                        <Route path='/signup' element={<SignUpPage />} />
+                    </Routes>
+                </Box>
 
-            {/* <Footer /> */}
-        </div>
+                {/* <Footer /> */}
+            </div>
+        </ThemeProvider>
     );
 }
 

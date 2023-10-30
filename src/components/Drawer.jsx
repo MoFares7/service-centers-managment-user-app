@@ -20,8 +20,10 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AppointmentsMangamentPage from './../pages/AppointmentsMangamentPage';
 import ActivitysManagmentPage from './../pages/ActivitysManagmentPage';
+import { AirOutlined, CalendarMonth, Chat, CoPresentOutlined } from '@mui/icons-material';
 
 const drawerWidth = 270;
+const options = ['Appointments Management', 'Volunteer Management', 'Third Option'];
 
 const openedMixin = (theme) => ({
         width: drawerWidth,
@@ -138,7 +140,7 @@ export default function DrawerCenterDetails() {
                                 </DrawerHeader>
                                 <Divider />
                                 <List>
-                                        {['Appointments Management', 'Volunteer Management'].map((text, index) => (
+                                        {options.map((text, index) => (
                                                 <ListItem key={text} disablePadding sx={{ display: 'block' }}>
                                                         <ListItemButton
                                                                 sx={{
@@ -146,7 +148,7 @@ export default function DrawerCenterDetails() {
                                                                         justifyContent: open ? 'initial' : 'center',
                                                                         px: 2.5,
                                                                 }}
-                                                                onClick={() => handleOptionClick(text)} // Handle option click
+                                                                onClick={() => handleOptionClick(text)}
                                                         >
                                                                 <ListItemIcon
                                                                         sx={{
@@ -155,13 +157,20 @@ export default function DrawerCenterDetails() {
                                                                                 justifyContent: 'center',
                                                                         }}
                                                                 >
-                                                                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                                                        {index % 3 === 0 ? (
+                                                                                <CalendarMonth />
+                                                                        ) : index % 2 === 0 ? (
+                                                                                <Chat />
+                                                                        ) : (
+                                                                                <CoPresentOutlined />
+                                                                        )}
                                                                 </ListItemIcon>
                                                                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                                                         </ListItemButton>
                                                 </ListItem>
                                         ))}
                                 </List>
+
                                 <Divider />
                         </Drawer>
                         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

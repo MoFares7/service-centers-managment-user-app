@@ -7,14 +7,14 @@ const AppointmentInfo = ({ image, title, description }) => {
                         sx={{
                                 borderRadius: '10px',
                                 backgroundColor: '#F5F5F5',
-                                border: '2px solid #1976D2',
+                                border: '2px solid #9C27B0',
                                 width: '200px',
                                 height: "240px",
                                 m: 1
                         }}
 
                 >
-                        <img src={image} width="100%" height="50%" style={{ borderRadius: '9px' }} />
+                        <img src={image} width="100%" height="50%" style={{ borderTopLeftRadius: '9px', borderTopRightRadius: '9px' }} />
                         <Typography sx={{
                                 fontSize: '16px',
                                 pl: 1
