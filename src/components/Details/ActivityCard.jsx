@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Button, Typography } from '@mui/material';
 import t from '../../assets/images/global.jpg';
+import BottomSheet from './../BottomSheet';
 
 const ActivityCard = () => {
+        const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
+
+        const openBottomSheet = () => {
+                setBottomSheetOpen(true);
+        };
+
+        const closeBottomSheet = () => {
+                setBottomSheetOpen(false);
+        };
         return (
                 <Box sx={{
                         maxWidth: {
-                                xs: '200px',
+                                xs: '270px',
                                 sm: '300px',
                                 md: '400px',
                                 lg: '500px'
@@ -85,59 +95,56 @@ const ActivityCard = () => {
                                 </Typography>
                         </Box>
                         <Box sx={{
-                                display: 'flex',
-                                justifyContent: 'space-between'
+                                display: {
+                                        xs: 'block',
+                                        sm: 'block',
+                                        md: 'flex'
+                                },
+                                justifyContent: 'space-between',
+                                textAlign: 'center'
                         }}>
-                                <Box sx={{
-                                        display: 'flex',
-                                        width: '250px',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        ml: 2,
-                                        mr: 2
-                                }}>
-                                        <Button
-                                                sx={{
-                                                        width: '200px',
-                                                        height: '50px',
-                                                        backgroundColor: '#9C27B0',
+
+                                <Button
+                                        sx={{
+                                                justifyContent: 'center',
+                                                m: 1,
+                                                width: '200px',
+                                                height: '50px',
+                                                backgroundColor: '#9C27B0',
+                                                color: 'white',
+                                                fontSize: '14px',
+                                                '&:hover': {
+                                                        backgroundColor: '#673AB7',
                                                         color: 'white',
-                                                        fontSize: '14px',
-                                                        '&:hover': {
-                                                                backgroundColor: '#673AB7',
-                                                                color: 'white',
-                                                        },
-                                                }}
-                                        // onClick={handleShowAppointmentClick} // Use onClick to register the event handler
-                                        >
-                                                Follow up as Volunteer
-                                        </Button>
-                                </Box>
-                                <Box sx={{
-                                        display: 'flex',
-                                        width: '250px',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        ml: 2,
-                                        mr: 2
-                                }}>
-                                        <Button
-                                                sx={{
-                                                        width: '200px',
-                                                        height: '50px',
-                                                        backgroundColor: '#9C27B0',
+                                                },
+                                        }}
+                                        onClick={openBottomSheet}
+                                >
+                                        Follow up as Volunteer
+                                </Button>
+                                <Button
+                                        sx={{
+                                                m: 1,
+                                                width: '200px',
+                                                height: '50px',
+                                                backgroundColor: '#9C27B0',
+                                                color: 'white',
+                                                '&:hover': {
+                                                        backgroundColor: '#673AB7',
                                                         color: 'white',
-                                                        '&:hover': {
-                                                                backgroundColor: '#673AB7',
-                                                                color: 'white',
-                                                        },
-                                                }}
-                                        // onClick={handleShowAppointmentClick} // Use onClick to register the event handler
-                                        >
-                                                Follow up as Supervis
-                                        </Button>
-                                </Box>
+                                                },
+                                        }}
+                                >
+                                        Follow up as Supervis
+                               </Button>
                         </Box>
+                        <BottomSheet open={bottomSheetOpen} onClose={closeBottomSheet}>
+                                <div>
+                                        <h2>Bottom Sheet Content</h2>
+                                        <p>This is the content of the bottom sheet.</p>
+                                        <Button onClick={closeBottomSheet}>Close</Button>
+                                </div>
+                        </BottomSheet>
 
                 </Box>
         )

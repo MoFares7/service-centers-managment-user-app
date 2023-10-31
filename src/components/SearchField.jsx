@@ -12,9 +12,9 @@ const SearchTextField = () => {
                                 sx: {
                                         margin: '0 auto',
                                         width: {
-                                                xs: '300px',  // For extra-small screens
-                                                sm: '450px',   // For small screens
-                                                md: '600px',   // For medium screens
+                                                xs: '200px',  // For extra-small screens
+                                                sm: '250px',   // For small screens
+                                                md: '400px',   // For medium screens
                                                 lg: '700px',   // For large screens
                                                 xl: '800px',   // For extra-large screens
                                         },
