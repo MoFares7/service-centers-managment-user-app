@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Box, Button, Typography } from '@mui/material';
 import t from '../../assets/images/global.jpg';
 import BottomSheet from './../BottomSheet';
+import MainButton from '../Button';
 
 const ActivityCard = () => {
         const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
@@ -12,6 +13,24 @@ const ActivityCard = () => {
 
         const closeBottomSheet = () => {
                 setBottomSheetOpen(false);
+        };
+
+        //! section to upload files ////////////////////////////
+        const fileInputRef = useRef(null);
+        const [selectedFileName, setSelectedFileName] = useState(null);
+
+        const handleButtonClick = () => {
+                // Trigger a click event on the hidden file input element
+                fileInputRef.current.click();
+        };
+
+        const handleFileSelected = (e) => {
+                const selectedFile = e.target.files[0];
+                if (selectedFile) {
+                        setSelectedFileName(selectedFile.name);
+                } else {
+                        setSelectedFileName(null);
+                }
         };
         return (
                 <Box sx={{
@@ -136,17 +155,56 @@ const ActivityCard = () => {
                                         }}
                                 >
                                         Follow up as Supervis
-                               </Button>
+                                </Button>
                         </Box>
                         <BottomSheet open={bottomSheetOpen} onClose={closeBottomSheet}>
-                                <div>
-                                        <h2>Bottom Sheet Content</h2>
-                                        <p>This is the content of the bottom sheet.</p>
-                                        <Button onClick={closeBottomSheet}>Close</Button>
-                                </div>
+                                <Box sx={{
+                                        justifyContent: 'center',
+                                        textAlign: 'center'
+                                }}>
+                                        <h2>Please Upload your CV</h2>
+                                        <p>Selected file: {selectedFileName}</p>
+                                        <Box sx={{
+                                                display: 'flex',
+                                                p: 1,
+
+                                        }}>
+
+                                                <MainButton
+                                                        title='Upload file'
+                                                        onClick={handleButtonClick} />
+                                                <input
+                                                        type="file"
+                                                        accept=".pdf, .doc, .docx"  // Specify the allowed file types
+                                                        style={{ display: 'none' }}
+                                                        ref={fileInputRef}
+                                                        onChange={handleFileSelected}
+                                                />
+                                                <Button
+                                                        variant=""
+                                                        sx={{
+                                                                ml: 1,
+                                                                backgroundColor: '#D32F2F',
+                                                                color: '#fff',
+                                                                '&:hover': {
+                                                                        backgroundColor: '#D32F2F',
+                                                                },
+                                                                width: {
+                                                                        sm: '200px',
+                                                                        md: '300px',
+                                                                        xl: '300px'
+                                                                },
+                                                        }}
+                                                        onClick={closeBottomSheet}
+                                                >
+                                                        Close
+                                                </Button>
+                                        </Box>
+
+                                </Box>
                         </BottomSheet>
 
-                </Box>
+                </Box >
         )
 }
 
