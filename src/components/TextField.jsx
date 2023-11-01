@@ -1,39 +1,34 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
+import { Send } from '@mui/icons-material';
 
-export default function FullWidthTextField({ value, onChange }) {
-        const [isFocused, setIsFocused] = React.useState(false);
+export default function FeedbackField({ onMessageSubmit }) {
+        const [message, setMessage] = React.useState(''); // State for the message
 
-        const handleFocus = () => {
-                setIsFocused(true);
+        const handleSubmit = () => {
+                // Check if the message is not empty before submitting
+                if (message.trim() !== '') {
+                        onMessageSubmit(message); // Call the onMessageSubmit function with the message
+                        setMessage(''); // Clear the message input
+                }
         };
-
-        const handleBlur = () => {
-                setIsFocused(false);
-        };
-
         return (
-                <Box
-                        sx={{
-                                display: 'flex',
-                                padding: '40px',
-                                width: 500,
-                                maxWidth: '100%',
-                                '& .Mui-focused .MuiInputBase-input': {
-                                        borderColor: isFocused ? '#FFC107' : '#FFC107', // Change to your desired border color
-                                },
-                        }}
+                <Paper
+                        component="form"
+                        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, borderColor: '#9C27B0', justifyContent: 'center' }}
                 >
-                        <TextField
-                                fullWidth
-                                label="send message"
-                                id="fullWidth"
-                                onFocus={handleFocus}
-                                onBlur={handleBlur}
-                                onChange={onChange}
-                                value={value}
+                        <InputBase
+                                sx={{ ml: 1, flex: 1 }}
+                                placeholder="Send Feedback"
+                                inputProps={{ 'aria-label': 'search google maps' }}
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
                         />
-                </Box>
+                        <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSubmit}>
+                                <Send />
+                        </IconButton>
+                </Paper>
         );
 }

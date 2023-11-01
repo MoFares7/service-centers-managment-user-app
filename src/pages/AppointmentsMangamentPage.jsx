@@ -8,15 +8,20 @@ import addappointmen from '../assets/images/add-appointment.avif';
 import deleteappointment from '../assets/images/deleteAppointmen.avif';
 import appointment from '../assets/images/appointment.jpg';
 import showap from '../assets/images/showap.avif';
-import { Link, useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom'; // Import useParams
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; 
+import LoginPage from './LoginPage';
 
 const AppointmentsMangamentPage = () => {
   const navigate = useNavigate();
   const { centerId } = useParams();
 
+  const token = localStorage.getItem('token');
+  if (!token) {
+    { return <LoginPage /> }
+  }
+  
   const handleShowAppointmentClick = () => {
-    console.log("Button clicked");
     navigate(`/centerDetails/${centerId}/myAppointment`);
   };
 

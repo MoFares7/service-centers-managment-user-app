@@ -2,11 +2,10 @@ import { Box, Button, Typography, Grid } from '@mui/material'
 import React, { useState } from 'react'
 import TextFieldSearch from '../components/TextFiledSearch'
 import ActivityCard from '../components/Details/ActivityCard'
-import { Modal, Paper } from '@mui/material';
-import BottomSheet from '../components/BottomSheet';
+import PrivateRoute from './../PrivateRoute';
 
 const ActivitysManagmentPage = () => {
-
+  <PrivateRoute />
   return (
     <Box sx={{
       pt: 2,

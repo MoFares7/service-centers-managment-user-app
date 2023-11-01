@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
@@ -7,15 +7,17 @@ import CenterCard from '../components/Home/CenterCard';
 import HeaderScope from '../components/Home/HeaderScope';
 import ErrorData from '../components/ErrorData';
 import FetureCard from '../components/Home/FetureCard';
-import DrawerCenterDetails from '../components/Drawer';
 import NoData from '../components/NoData';
+import LoginPage from './LoginPage';
+import PrivateRoute from '../PrivateRoute';
 
 const HomePage = () => {
         const dispatch = useDispatch();
         const centers = useSelector((state) => state.center.data);
         const status = useSelector((state) => state.center.status);
-        const navigate = useNavigate(); // Initialize navigate
+        const navigate = useNavigate();
 
+        <PrivateRoute />
         useEffect(() => {
                 if (status === 'idle') {
                         dispatch(fetchCentersAsync());

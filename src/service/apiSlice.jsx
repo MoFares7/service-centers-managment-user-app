@@ -1,11 +1,16 @@
 // apiSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setToken } from '../logic/authSlice';
+import { useDispatch } from 'react-redux';
 
 //! ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export const login = createAsyncThunk('api/auth/login', async (credentials) => {
         try {
                 const response = await axios.post('http://127.0.0.1:8000/api/auth/login', credentials);
+                console.log(response.data);
+                localStorage.setItem('token', response.data.access_token);
+               
                 return response.data;
         } catch (error) {
                 throw error;

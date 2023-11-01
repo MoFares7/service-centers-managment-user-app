@@ -3,6 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 import t from '../../assets/images/global.jpg';
 import BottomSheet from './../BottomSheet';
 import MainButton from '../Button';
+import FormDialog from './FormDialog';
 
 const ActivityCard = () => {
         const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
@@ -32,6 +33,17 @@ const ActivityCard = () => {
                         setSelectedFileName(null);
                 }
         };
+        //! section for form dialog ////////////////////////////
+        const [open, setOpen] = useState(false);
+
+        const handleOpen = () => {
+                setOpen(true);
+        };
+
+        const handleClose = () => {
+                setOpen(false);
+        };
+
         return (
                 <Box sx={{
                         maxWidth: {
@@ -142,6 +154,7 @@ const ActivityCard = () => {
                                         Follow up as Volunteer
                                 </Button>
                                 <Button
+                                        onClick={handleOpen}
                                         sx={{
                                                 m: 1,
                                                 width: '200px',
@@ -156,6 +169,7 @@ const ActivityCard = () => {
                                 >
                                         Follow up as Supervis
                                 </Button>
+                                <FormDialog open={open} onClose={handleClose} />
                         </Box>
                         <BottomSheet open={bottomSheetOpen} onClose={closeBottomSheet}>
                                 <Box sx={{
@@ -169,7 +183,6 @@ const ActivityCard = () => {
                                                 p: 1,
 
                                         }}>
-
                                                 <MainButton
                                                         title='Upload file'
                                                         onClick={handleButtonClick} />
@@ -203,7 +216,6 @@ const ActivityCard = () => {
 
                                 </Box>
                         </BottomSheet>
-
                 </Box >
         )
 }

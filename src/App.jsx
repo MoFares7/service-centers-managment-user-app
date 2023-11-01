@@ -11,35 +11,36 @@ import ShowMyAppointment from './pages/ShowMyAppointment';
 import theme from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+import PrivateRoute from './PrivateRoute';
+import AccelerationComponent from './utils/AccelrationTest';
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-                {/* <ResponsiveAppBar /> */}
-
-                <Box style={{ flex: 1 }}>
-                    <Routes>
-                        <Route path='/' element={<HomePage />} />
-                        <Route
-                            path='/centerDetails/:centerId'
-                            element={<DetailsCenter />}
-                        />
-                        <Route
-                            path='/centerDetails/:centerId/myAppointment'
-                            element={<ShowMyAppointment />}
-                        />
-                        <Route path='/login' element={<LoginPage />} />
-                        <Route path='/signup' element={<SignUpPage />} />
-                    </Routes>
-                </Box>
-
-                {/* <Footer /> */}
-            </div>
-        </ThemeProvider>
+        <Box>
+            <AccelerationComponent />
+        </Box>
+        // <ThemeProvider theme={theme}>
+        //     <CssBaseline />
+        //     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        //         <Box style={{ flex: 1 }}>
+        //             <PrivateRoute />
+        //             <Routes>
+        //                 <Route index element={<LoginPage />} />
+        //                 <Route path='/signup' element={<SignUpPage />} />
+        //                 <Route path='/' element={<HomePage />} />
+        //                 <Route
+        //                     path='/centerDetails/:centerId'
+        //                     element={<DetailsCenter />}
+        //                 />
+        //                 <Route
+        //                     path='/centerDetails/:centerId/myAppointment'
+        //                     element={<ShowMyAppointment />}
+        //                 />
+        //             </Routes>
+        //         </Box>
+        //     </div>
+        // </ThemeProvider>
     );
 }
-
 
 export default App;

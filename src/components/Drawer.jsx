@@ -21,9 +21,10 @@ import MailIcon from '@mui/icons-material/Mail';
 import AppointmentsMangamentPage from './../pages/AppointmentsMangamentPage';
 import ActivitysManagmentPage from './../pages/ActivitysManagmentPage';
 import { AirOutlined, CalendarMonth, Chat, CoPresentOutlined } from '@mui/icons-material';
+import FeedbackPage from './../pages/FeedbackPage';
 
 const drawerWidth = 270;
-const options = ['Appointments Management', 'Volunteer Management', 'Third Option'];
+const options = ['Appointments Management', 'Volunteer Management', 'Feedback Management'];
 
 const openedMixin = (theme) => ({
         width: drawerWidth,
@@ -176,6 +177,7 @@ export default function DrawerCenterDetails() {
                         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                                 {selectedOption === 'Appointments Management' && <AppointmentsMangamentPage />}
                                 {selectedOption === 'Volunteer Management' && <ActivitysManagmentPage />}
+                                {selectedOption === 'Feedback Management' && <FeedbackPage />}
                         </Box>
                 </Box>
         );

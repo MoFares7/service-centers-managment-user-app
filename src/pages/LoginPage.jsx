@@ -40,7 +40,6 @@ const LoginPage = () => {
                         if (login.fulfilled.match(resultAction)) {
                                 const token = resultAction.payload.token;
                                 dispatch(setToken(token));
-                                // Handle a successful login, e.g., redirect to another page.
                                 window.location.href = '/';
                         } else if (login.rejected.match(resultAction)) {
                                 toast.error('Email and Password not matched.');
