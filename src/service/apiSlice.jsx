@@ -1,8 +1,6 @@
 // apiSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { setToken } from '../logic/authSlice';
-import { useDispatch } from 'react-redux';
 
 //! ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export const login = createAsyncThunk('api/auth/login', async (credentials) => {

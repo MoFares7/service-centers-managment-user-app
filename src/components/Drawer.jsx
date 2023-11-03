@@ -108,7 +108,6 @@ export default function DrawerCenterDetails() {
         const handleOptionClick = (option) => {
                 setSelectedOption(option);
         };
-
         return (
                 <Box sx={{ display: 'flex' }}>
                         <CssBaseline />

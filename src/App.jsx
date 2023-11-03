@@ -16,30 +16,27 @@ import AccelerationComponent from './utils/AccelrationTest';
 
 function App() {
     return (
-        <Box>
-            <AccelerationComponent />
-        </Box>
-        // <ThemeProvider theme={theme}>
-        //     <CssBaseline />
-        //     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        //         <Box style={{ flex: 1 }}>
-        //             <PrivateRoute />
-        //             <Routes>
-        //                 <Route index element={<LoginPage />} />
-        //                 <Route path='/signup' element={<SignUpPage />} />
-        //                 <Route path='/' element={<HomePage />} />
-        //                 <Route
-        //                     path='/centerDetails/:centerId'
-        //                     element={<DetailsCenter />}
-        //                 />
-        //                 <Route
-        //                     path='/centerDetails/:centerId/myAppointment'
-        //                     element={<ShowMyAppointment />}
-        //                 />
-        //             </Routes>
-        //         </Box>
-        //     </div>
-        // </ThemeProvider>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+                <Box style={{ flex: 1 }}>
+                    <PrivateRoute />
+                    <Routes>
+                        <Route path='/login' element={<LoginPage />} />
+                        <Route path='/signup' element={<SignUpPage />} />
+                        <Route path='/' element={<HomePage />} />
+                        <Route
+                            path='/centerDetails/:centerId'
+                            element={<DetailsCenter />}
+                        />
+                        <Route
+                            path='/centerDetails/:centerId/myAppointment'
+                            element={<ShowMyAppointment />}
+                        />
+                    </Routes>
+                </Box>
+            </div>
+        </ThemeProvider>
     );
 }
 

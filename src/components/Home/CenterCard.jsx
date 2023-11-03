@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 
 export default function CenterCard({ centerName, centerCity, centerImage, onclick, key, to }) {
         const theme = useTheme();
-
         return (
                 <Card
                         sx={{

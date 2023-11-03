@@ -5,7 +5,7 @@ import BottomSheet from './../BottomSheet';
 import MainButton from '../Button';
 import FormDialog from './FormDialog';
 
-const ActivityCard = () => {
+const ActivityCard = ({ image, activityName, activitySupervisors, activityVolunteer, startDate, endDate }) => {
         const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
 
         const openBottomSheet = () => {
@@ -52,9 +52,10 @@ const ActivityCard = () => {
                                 md: '400px',
                                 lg: '500px'
                         },
-                        backgroundColor: '#F5F5F5'
+                        backgroundColor: '#F5F5F5',
+                        m: 1
                 }}>
-                        <img src={t} width="100%" height='40%' />
+                        <img src={image} width="100%" height='40%' />
                         <Box sx={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
@@ -66,7 +67,7 @@ const ActivityCard = () => {
                                 <Typography sx={{
                                         color: '#9E9E9E',
                                 }}>
-                                        Help homeless
+                                        {activityName}
                                 </Typography>
                         </Box>
                         <Box sx={{
@@ -80,7 +81,7 @@ const ActivityCard = () => {
                                 <Typography sx={{
                                         color: '#9E9E9E',
                                 }}>
-                                        40
+                                        {activitySupervisors}
                                 </Typography>
                         </Box>
                         <Box sx={{
@@ -94,7 +95,7 @@ const ActivityCard = () => {
                                 <Typography sx={{
                                         color: '#9E9E9E',
                                 }}>
-                                        200
+                                        {activityVolunteer}
                                 </Typography>
                         </Box>
                         <Box sx={{
@@ -108,7 +109,7 @@ const ActivityCard = () => {
                                 <Typography sx={{
                                         color: '#9E9E9E',
                                 }}>
-                                        15/7/2023
+                                        {startDate}
                                 </Typography>
                         </Box>
                         <Box sx={{
@@ -122,7 +123,7 @@ const ActivityCard = () => {
                                 <Typography sx={{
                                         color: '#9E9E9E',
                                 }}>
-                                        20/12/2023
+                                        {endDate}
                                 </Typography>
                         </Box>
                         <Box sx={{
