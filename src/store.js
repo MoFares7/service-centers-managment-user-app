@@ -6,6 +6,7 @@ import registerRaducer from './service/registerSlice';
 import centerReducer from './service/centersSliceService';
 import feedbackReducer from './service/feedbackslice';
 import activityCenterReducer from './service/activitySlice';
+import activitySupervisorReducer from './service/addActivitySupervisor';
 
 const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
         center: centerReducer,
         feedback: feedbackReducer,
         activity: activityCenterReducer,
+        activitySupervisor: activitySupervisorReducer,
     },
 });
 

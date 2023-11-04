@@ -4,9 +4,11 @@ import t from '../../assets/images/global.jpg';
 import BottomSheet from './../BottomSheet';
 import MainButton from '../Button';
 import FormDialog from './FormDialog';
+import { useDispatch } from 'react-redux';
 
 const ActivityCard = ({ image, activityName, activitySupervisors, activityVolunteer, startDate, endDate }) => {
         const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
+        const dispatch = useDispatch();
 
         const openBottomSheet = () => {
                 setBottomSheetOpen(true);
@@ -184,9 +186,45 @@ const ActivityCard = ({ image, activityName, activitySupervisors, activityVolunt
                                                 p: 1,
 
                                         }}>
-                                                <MainButton
-                                                        title='Upload file'
-                                                        onClick={handleButtonClick} />
+                                                <Button
+                                                        variant=""
+                                                        sx={{
+                                                                ml: 1,
+                                                                backgroundColor: '#4CAF50',
+                                                                color: '#fff',
+                                                                '&:hover': {
+                                                                        backgroundColor: '#4CAF50',
+                                                                },
+                                                                width: {
+                                                                        sm: '200px',
+                                                                        md: '300px',
+                                                                        xl: '300px'
+                                                                },
+                                                        }}
+                                                        onClick={closeBottomSheet}
+                                                >
+                                                        Upload
+                                                </Button>
+                                                <Button
+                                                        variant=""
+                                                        sx={{
+                                                                ml: 1,
+                                                                backgroundColor: '#9C27B0',
+                                                                color: '#fff',
+                                                                '&:hover': {
+                                                                        backgroundColor: '#9C27B0',
+                                                                },
+                                                                width: {
+                                                                        sm: '350px',
+                                                                        md: '450px',
+                                                                        xl: '550px'
+                                                                },
+                                                        }}
+                                                        onClick={handleButtonClick}
+                                                >
+                                                        Select file
+                                                </Button>
+                                              
                                                 <input
                                                         type="file"
                                                         accept=".pdf, .doc, .docx"  // Specify the allowed file types
